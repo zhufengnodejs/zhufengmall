@@ -1,0 +1,21 @@
+html
+    body
+        nav.navbar.navbar-default(role='navigation')
+            .navbar-header
+                a.navbar-brand(href='#/') 珠峰商城
+            ul.nav.navbar-nav
+                li(ng-class="{active:isActive('/index')}")
+                    a(href='#/index') 首页
+                li(ng-class="{active:isActive('/wares/list')}")
+                    a(href='#/wares/list') 浏览商品
+                li(ng-class="{active:isActive('/carts/list')}")
+                    a(href='#/carts/list') 购物车
+            ul.nav-navbar-nav.navbar-right(ng-show='me', style='list-style-type: none')
+                li.dropdown
+                    a.dropdown-toggle(href='#', style='padding-right: 25px', data-toggle='dropdown', role='button')
+                        img(style='width:15px; :15px', ng-src='{{me.avatar}}', alt='{{me.username}}')
+                        |  {{me.username}}
+                        span.caret
+                    ul.dropdown-menu.dropdown-menu-left
+                        li
+                            a(href='#', ng-click='logout()') 退出
