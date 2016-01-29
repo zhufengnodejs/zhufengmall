@@ -1,0 +1,19 @@
+zf-navigation
+
+div.container
+    .row
+        .col-md-12
+            .panel.panel-default
+                .panel-heading 登录
+                form.form-horizontal(role='form', novalidate='novalidate', name='userform')
+                    .panel-body
+                        .form-group(ng-class="{'has-error':userform.username.$dirty&&userform.username.$invalid}")
+                            label.col-sm-offset-2.col-sm-2.control-label.text-right(for='username') 用户名
+                            .input-group.col-sm-4
+                                .input-group-addon
+                                    span.glyphicon.glyphicon-user
+                                input#username.form-control(type='text', name='username', ng-model='username', placeholder='请输入中文名称', ng-minlength='6', ng-required='true')
+                        .form-group.row
+                            button.col-sm-offset-5.btn.btn-lg.btn-primary.btn-enter(type='button',ng-click="index.login()" ng-disabled='userform.$invalid') 登录
+
+

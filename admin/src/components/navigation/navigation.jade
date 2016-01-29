@@ -1,0 +1,9 @@
+nav.navbar.navbar-default(role='navigation')
+    .navbar-header
+        a.navbar-brand(href='#/') 珠峰商城
+        ul.nav.navbar-nav
+            li(ng-class="{active:isActive('/index')}")
+                a(ui-sref='index') 首页
+            li(ng-class="{active:isActive('/category')}")
+                a(ui-sref='category') 商品管理
+            li(ng-class="{active:isActive('/category')}")

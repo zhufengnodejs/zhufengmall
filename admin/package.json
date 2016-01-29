@@ -1,10 +1,12 @@
 {
-  "name": "admin",
+  "name": "desktop",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "DEV=false webpack",
+    "test": "mocha src/**/*.spec.js",
+    "dev": "webpack-dev-server --devtool eval --config webpack.config.js --progress --colors --port 8080"
   },
   "devDependencies": {
     "babel-core": "^6.3.26",
@@ -19,7 +21,9 @@
   },
   "dependencies": {
     "angular": "^1.4.8",
-    "angular-ui-router": "^0.2.15"
+    "angular-resource": "^1.4.9",
+    "angular-ui-router": "^0.2.15",
+    "jquery": "^2.2.0"
   },
   "author": "",
   "license": "ISC"

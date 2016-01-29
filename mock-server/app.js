@@ -10,6 +10,7 @@ mongoose.connect('mongodb://123.57.143.189/zhufengmall');
 var MongoStore = require('connect-mongo/es5')(session);
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var categories = require('./routes/categories');
 require('./model');
 var app = express();
 
@@ -46,7 +47,7 @@ app.use(function(req,res,next){
 });
 app.use('/', routes);
 app.use('/users', users);
-
+app.use('/categories', categories);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

@@ -1,0 +1,93 @@
+html
+    body
+        .col-md-12
+            .panel.panel-default
+                .panel-heading.clearfix
+                    .pull-left
+                        button.btn.btn-success(add-wares='') 增加
+                        button.btn.btn-danger(batch-delete-wares='') 批量删除
+                    .pull-right
+                        input(type='text', placeholder='请输入关键字', name='keyword', ng-model='keyword', ng-change='filter()')
+                .panel-body
+                    table.table.table-striped.table-responsive
+                        thead
+                            tr
+                                td.text-center
+                                    input#selectAllWares(type='checkbox', select-all-wares='')
+                                td 名称1
+                                td 价格
+                                td 图片
+                                td.text-center 操作
+                        tbody
+                            tr(ng-repeat='ware in filterWares track by $index')
+                                td.text-center
+                                    input(type='checkbox', data-id='{{ware._id}}', name='chkItem', select-ware-item='')
+                                td {{ware.name}}
+                                td {{ware.price}}
+                                td
+                                    img(style='width:50px;height:50px', ng-src='{{ware.imgSrc}}', alt='{{ware.name}}')
+                                td.text-center
+                                    button.btn.btn-primary(data-index='{{$index}}', edit-wares='') 编辑
+                                    button.btn.btn-success(data-index='{{$index}}', view-wares='') 查看
+                                    button.btn.btn-danger(data-index='{{$index}}', delete-wares='') 删除
+                .panel-footer.text-center
+                    ul.pagination.pagination-md
+                        li(ng-class='{disabled:pageNumber==1}')
+                            a.btn(ng-click='go(pageNumber-1)') 上一页
+                        li(ng-repeat='page in pages', ng-class='{active:$index+1 == pageNumber}')
+                            a.btn(ng-click='go($index+1)') {{page}}
+                        li(ng-class='{disabled:pageNumber==totalPage}')
+                            a.btn(ng-click='go(pageNumber+1)') 下一页
+        #addDialog.modal.fade
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        button.close(data-dismiss='modal') ×
+                        h4(modal-title='') 增加商品
+                    .modal-body
+                        form.form-horizontal(action='', role='form')
+                            input.form-control(type='hidden', ng-model='ware._id', placeholder='ID')
+                            .form-group
+                                label.col-sm-2.control-label(for='name') 名称
+                                .col-sm-10
+                                    input#name.form-control(type='text', ng-model='ware.name', placeholder='名称')
+                            .form-group
+                                label.col-sm-2.control-label(for='price') 价格
+                                .col-sm-10
+                                    input#price.form-control(type='text', ng-model='ware.price', placeholder='价格')
+                            .form-group
+                                label.col-sm-2.control-label(for='imgSrc') 图片
+                                .col-sm-5
+                                    input#imgSrc.form-control(type='file', file-model='', placeholder='图片')
+                                .col-sm-5
+                                    // 此为图片预览窗口
+                                    img#imgPreview(src='{{ware.imgSrc}}', style='max-width:100px;max-height:100px;margin:0 auto;display:block;')
+                    .modal-footer
+                        button.btn.btn-success(ng-click='save()', data-dismiss='modal') 确定
+                        button.btn.btn-default(data-dismiss='modal') 取消
+        #viewDialog.modal.fade
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        button.close(data-dismiss='modal') ×
+                        h4(modal-title='') 查看商品
+                    .modal-body
+                        .thubmnail
+                            img(style='width:200px;height:200px', ng-src='{{ware.imgSrc}}', alt='{{ware.name}}')
+                            .caption
+                                h3 {{ware.name}}
+                                p
+                                    span.glyphicon.glyphicon-yen {{ware.price}}
+                    .modal-footer
+                        button.btn.btn-default(data-dismiss='modal') 取消
+        #deleteDialog.modal.fade
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        button.close(data-dismiss='modal') ×
+                        h4(modal-title='') 确认删除
+                    .modal-body
+                        | 请问你是否确认要删除{{ware.name}}?
+                    .modal-footer
+                        button.btn.btn-danger(ng-click='delete()', data-dismiss='modal') 确定
+                        button.btn.btn-default(data-dismiss='modal') 取消
