@@ -12,14 +12,15 @@ router.post('/login', function(req, res, next) {
     }else{
       if(user){
         req.session.user = user;
+        console.log(req.session.user);
         res.json(user);
       }else{
         User.create({username:req.body.username},function(err,user){
           if(err){
             res.status(500).json({msg:err});
           }else{
-            console.log(user);
             req.session.user = user;
+            console.log(req.session.user);
             res.json(user);
           }
         });

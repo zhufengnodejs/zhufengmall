@@ -12,6 +12,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var categories = require('./routes/categories');
 var wares = require('./routes/wares');
+var carts = require('./routes/carts');
 require('./model');
 var app = express();
 
@@ -38,21 +39,24 @@ app.use(session({
   })
 }));
 app.options(function(req,res,next){
-  res.setHeader('Access-Control-Allow-Origin',"*");
+  res.setHeader('Access-Control-Allow-Origin',"http://localhost:8080");
   res.setHeader('Access-Control-Allow-Headers',"Content-Type");
   res.setHeader('Access-Control-Allow-Methods',"DELETE,POST,GET,PUT");
+  res.setHeader('Access-Control-Allow-Credentials',"true");
   res.end();
 });
 app.use(function(req,res,next){
-  res.setHeader('Access-Control-Allow-Origin',"*");
+  res.setHeader('Access-Control-Allow-Origin',"http://localhost:8080");
   res.setHeader('Access-Control-Allow-Headers',"Content-Type");
   res.setHeader('Access-Control-Allow-Methods',"DELETE,POST,GET,PUT");
+  res.setHeader('Access-Control-Allow-Credentials',"true");
   next();
 });
 app.use('/', routes);
 app.use('/users', users);
 app.use('/categories', categories);
 app.use('/wares', wares);
+app.use('/carts', carts);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -66,6 +70,7 @@ app.use(function(req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
+    console.error(err);
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
@@ -77,6 +82,7 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
+  console.error(err);
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,

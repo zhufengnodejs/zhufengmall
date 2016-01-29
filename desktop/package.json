@@ -17,6 +17,11 @@
     "webpack": "^1.12.11",
     "webpack-dev-server": "^1.14.1"
   },
+  "scripts": {
+    "build": "DEV=false webpack",
+    "test": "mocha src/**/*.spec.js",
+    "dev": "webpack-dev-server --devtool eval --config webpack.config.js --progress --colors --port 8080"
+  },
   "dependencies": {
     "angular": "^1.4.8",
     "angular-ui-router": "^0.2.15"

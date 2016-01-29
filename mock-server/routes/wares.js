@@ -53,4 +53,8 @@ router.put('/:_id',function(req, res, next){
   });
 });
 
+router.get('/:_id',function(){
+
+});
+
 module.exports = router;

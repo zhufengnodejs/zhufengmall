@@ -1,0 +1,49 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'run',
+1 verbose cli   'dev' ]
+2 info using npm@3.5.2
+3 info using node@v5.5.0
+4 verbose run-script [ 'predev', 'dev', 'postdev' ]
+5 info lifecycle desktop@1.0.0~predev: desktop@1.0.0
+6 silly lifecycle desktop@1.0.0~predev: no script for predev, continuing
+7 info lifecycle desktop@1.0.0~dev: desktop@1.0.0
+8 verbose lifecycle desktop@1.0.0~dev: unsafe-perm in lifecycle true
+9 verbose lifecycle desktop@1.0.0~dev: PATH: C:\Users\Administrator\AppData\Roaming\npm\node_modules\npm\bin\node-gyp-bin;D:\vip_data\mygit\zhufengmall\zhufengmall\desktop\node_modules\.bin;C:\Ruby22\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\SepanderSoft;C:\Program Files (x86)\Internet Explorer;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Common Files\NetSarang;C:\Program Files (x86)\Windows7Master;C:\Program Files (x86)\Heroku\bin;C:\Program Files (x86)\git\cmd;C:\Program Files\Java\jdk1.8.0_25\bin;E:\apache-ant-1.9.4-bin\apache-ant-1.9.4\bin;E:\adt-bundle-windows-x86_64-20140702\adt-bundle-windows-x86_64-20140702\sdk\tools;E:\adt-bundle-windows-x86_64-20140702\adt-bundle-windows-x86_64-20140702\sdk\platform-tools;C:\Program Files (x86)\Common Files\Adobe\AGL;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0\;C:\Program Files (x86)\Git\cmd;C:\Program Files (x86)\Git\bin;C:\Program Files\nodejs\;C:\Program Files\MongoDB 2.6 Standard\bin;E:\nvmw
+10 verbose lifecycle desktop@1.0.0~dev: CWD: D:\vip_data\mygit\zhufengmall\zhufengmall\desktop
+11 silly lifecycle desktop@1.0.0~dev: Args: [ '/d /s /c',
+11 silly lifecycle   'webpack-dev-server --devtool eval --config webpack.config.js --progress --colors --port 8080' ]
+12 silly lifecycle desktop@1.0.0~dev: Returned: code: 1  signal: null
+13 info lifecycle desktop@1.0.0~dev: Failed to exec dev script
+14 verbose stack Error: desktop@1.0.0 dev: `webpack-dev-server --devtool eval --config webpack.config.js --progress --colors --port 8080`
+14 verbose stack Exit status 1
+14 verbose stack     at EventEmitter.<anonymous> (C:\Users\Administrator\AppData\Roaming\npm\node_modules\npm\lib\utils\lifecycle.js:232:16)
+14 verbose stack     at emitTwo (events.js:100:13)
+14 verbose stack     at EventEmitter.emit (events.js:185:7)
+14 verbose stack     at ChildProcess.<anonymous> (C:\Users\Administrator\AppData\Roaming\npm\node_modules\npm\lib\utils\spawn.js:24:14)
+14 verbose stack     at emitTwo (events.js:100:13)
+14 verbose stack     at ChildProcess.emit (events.js:185:7)
+14 verbose stack     at maybeClose (internal/child_process.js:821:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+15 verbose pkgid desktop@1.0.0
+16 verbose cwd D:\vip_data\mygit\zhufengmall\zhufengmall\desktop
+17 error Windows_NT 6.1.7601
+18 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js" "run" "dev"
+19 error node v5.5.0
+20 error npm  v3.5.2
+21 error code ELIFECYCLE
+22 error desktop@1.0.0 dev: `webpack-dev-server --devtool eval --config webpack.config.js --progress --colors --port 8080`
+22 error Exit status 1
+23 error Failed at the desktop@1.0.0 dev script 'webpack-dev-server --devtool eval --config webpack.config.js --progress --colors --port 8080'.
+23 error Make sure you have the latest version of node.js and npm installed.
+23 error If you do, this is most likely a problem with the desktop package,
+23 error not with npm itself.
+23 error Tell the author that this fails on your system:
+23 error     webpack-dev-server --devtool eval --config webpack.config.js --progress --colors --port 8080
+23 error You can get information on how to open an issue for this project with:
+23 error     npm bugs desktop
+23 error Or if that isn't available, you can get their info via:
+23 error     npm owner ls desktop
+23 error There is likely additional logging output above.
+24 verbose exit [ 1, true ]

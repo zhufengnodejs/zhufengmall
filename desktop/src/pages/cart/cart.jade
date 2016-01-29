@@ -1,0 +1,53 @@
+zf-navigation
+
+div.container
+    .row
+        .col-md-8
+            .panel.panel-default
+                .panel-heading.clearfix
+                    .pull-left
+                        form.form-inline.well.well-sm
+                            span.glyphicon.glyphicon-search
+                            .form-group
+                                input.form-control(ng-model="keyword")
+                            span.glyphicon.glyphicon-sort-by-attributes
+                                .form-group
+                                    select.form-control(ng-model="order")
+                                        option(value="name") 名称(正序)
+                                        option(value="-name") 名称(倒序)
+                            .form-group
+                                button.btn.btn-success(ng-click="add()") 增加
+                .panel-body
+                    .row
+                        .col-md-3(ng-repeat="cart in carts | filter:keyword | orderBy:order")
+                            .media
+                                media-body
+                                    h1 {{cart.name}}
+                                    p {{cart.price|currency}}
+                                    p
+                                        button.btn.btn-primary(ng-click="add(cart)") 添加购物车
+        #addDialog.modal.fade
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        button.close(data-dismiss='modal') ×
+                        h4(modal-title='增加商品') 增加商品
+                    .modal-body
+                        form.form-horizontal(role='form',name="cartform")
+                            input.form-control(type='hidden', ng-model='cart._id', placeholder='ID')
+                            .form-group
+                                label.col-sm-2.control-label(for='name') 名称
+                                .col-sm-10
+                                    input#name.form-control(type='text', ng-model='cart.name', placeholder='名称',ng-required="true")
+                            .form-group
+                                label.col-sm-2.control-label(for='category') 分类
+                                .col-sm-10
+                                    select#category.form-control(ng-model="cart.category",ng-required="true")
+                                        option(value="{{category._id}}" ng-repeat="category in categories") {{category.name}}
+                            .form-group
+                                label.col-sm-2.control-label(for='price') 价格
+                                .col-sm-10
+                                    input#price.form-control(type='number', ng-model='cart.price', placeholder='价格')
+                    .modal-footer
+                        button.btn.btn-success(ng-click='save()', data-dismiss='modal',ng-disabled="cartform.$invalid||cartform.$pristine") 确定
+                        button.btn.btn-default(data-dismiss='modal') 取消

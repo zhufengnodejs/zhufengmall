@@ -5,11 +5,11 @@ html
                 a.navbar-brand(href='#/') 珠峰商城
             ul.nav.navbar-nav
                 li(ng-class="{active:isActive('/index')}")
-                    a(href='#/index') 首页
+                    a(ui-sref='index') 首页
                 li(ng-class="{active:isActive('/wares/list')}")
-                    a(href='#/wares/list') 浏览商品
+                    a(ui-sref='ware') 浏览商品
                 li(ng-class="{active:isActive('/carts/list')}")
-                    a(href='#/carts/list') 购物车
+                    a(ui-sref='cart') 购物车
             ul.nav-navbar-nav.navbar-right(ng-show='me', style='list-style-type: none')
                 li.dropdown
                     a.dropdown-toggle(href='#', style='padding-right: 25px', data-toggle='dropdown', role='button')
