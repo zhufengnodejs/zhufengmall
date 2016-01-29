@@ -11,6 +11,7 @@ var MongoStore = require('connect-mongo/es5')(session);
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var categories = require('./routes/categories');
+var wares = require('./routes/wares');
 require('./model');
 var app = express();
 
@@ -51,6 +52,7 @@ app.use(function(req,res,next){
 app.use('/', routes);
 app.use('/users', users);
 app.use('/categories', categories);
+app.use('/wares', wares);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

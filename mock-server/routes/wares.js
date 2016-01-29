@@ -2,51 +2,53 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-  Category.find({},function(err,categories){
+  Ware.find({}).populate('category').exec(function(err,wares){
     if(err){
       res.status(500).json({msg:err});
     }else{
-      res.json(categories);
+      res.json(wares);
     }
   });
 });
 
 router.post('/', function(req, res, next) {
-  Category.findOne({name:req.body.name},function(err,category){
+
+  Ware.findOne({name:req.body.name},function(err,ware){
     if(err){
       res.status(500).json({msg:err});
     }else{
-      if(category){
-        res.status(500).json({msg:'此分类已经存在'});
+      if(ware){
+        res.status(500).json({msg:'此商品已经存在'});
       }else{
-        Category.create({name:req.body.name},function(err,category){
+        Ware.create(req.body,function(err,ware){
           if(err){
             res.status(500).json({msg:err});
           }else{
-            res.json(category);
+            res.json(ware);
           }
         });
       }
     }
-  });s
+  });
 });
 
 router.delete('/:_id',function(req, res, next){
-  Category.remove({_id:req.params._id},function(err,category){
+  Ware.remove({_id:req.params._id},function(err,ware){
     if(err){
       res.status(500).json({msg:err});
     }else{
-      res.json(category);
+      res.json(ware);
     }
   });
 });
 
 router.put('/:_id',function(req, res, next){
-  Category.update({_id:req.params._id},{$set:{name:req.body.name}},function(err,category){
+  delete req.body._id;
+  Ware.update({_id:req.params._id},{$set:req.body},function(err,ware){
     if(err){
       res.status(500).json({msg:err});
     }else{
-      res.json(category);
+      res.json(ware);
     }
   });
 });
