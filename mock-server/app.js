@@ -38,11 +38,14 @@ app.use(session({
 }));
 app.options(function(req,res,next){
   res.setHeader('Access-Control-Allow-Origin',"*");
+  res.setHeader('Access-Control-Allow-Headers',"Content-Type");
+  res.setHeader('Access-Control-Allow-Methods',"DELETE,POST,GET,PUT");
   res.end();
 });
 app.use(function(req,res,next){
   res.setHeader('Access-Control-Allow-Origin',"*");
   res.setHeader('Access-Control-Allow-Headers',"Content-Type");
+  res.setHeader('Access-Control-Allow-Methods',"DELETE,POST,GET,PUT");
   next();
 });
 app.use('/', routes);

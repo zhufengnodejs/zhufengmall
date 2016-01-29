@@ -37,6 +37,12 @@ module.exports = {
             }
         ]
     },
+    plugins: [
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+        })
+    ],
     resolve: {
         root: [
             path.resolve('./src') //指定根路径

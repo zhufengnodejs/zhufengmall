@@ -2,31 +2,49 @@ zf-navigation
 
 div.container
     .row
-        .col-md-12
+        .col-md-8
             .panel.panel-default
                 .panel-heading.clearfix
                     .pull-left
-                        button.btn.btn-success(add-category) 增加
-                        button.btn.btn-danger(batch-delete-categories) 批量删除
-                    .pull-right
-                        input(type='text', placeholder='请输入关键字', name='keyword', ng-model='keyword')
+                        form.form-inline.well.well-sm
+                            span.glyphicon.glyphicon-search
+                            .form-group
+                                input.form-control(ng-model="keyword")
+                            span.glyphicon.glyphicon-sort-by-attributes
+                                .form-group
+                                    select.form-control(ng-model="order")
+                                        option(value="name") 姓名(正序)
+                                        option(value="-name") 姓名(倒序)
+                            .form-group
+                                button.btn.btn-success(ng-click="add()") 增加
                 .panel-body
-                    table.table.table-striped.table-responsive
+                    table.table.table-striped.table-bordered
                         thead
                             tr
-                                td.text-center
-                                    input#selectAllCategories(type='checkbox', select-all-categories)
                                 td 名称
                                 td.text-center 操作
                         tbody
-                            tr(ng-repeat="category in category.categories")
-                                td.text-center
-                                    input(type='checkbox', data-id='{{ware._id}}', name='chkItem', select-ware-item)
+                            tr
+                                td(colspan="2") 名称
+                                    span.glyphicon.glyphicon-menu-up(ng-click="order = 'name'")
+                                    span.glyphicon.glyphicon-menu-down(ng-click="order = '-name'")
+                            tr(ng-repeat="category in categories | filter:keyword | orderBy:order",ng-click="select(category)",ng-style="{'background-color':category._id == selectedCategory._id?'lightgray':''}")
                                 td {{category.name}}
                                 td.text-center
-                                    button.btn.btn-primary(data-index='{{$index}}', edit-category) 编辑
-                                    button.btn.btn-success(data-index='{{$index}}', view-category) 查看
-                                    button.btn.btn-danger(data-index='{{$index}}', delete-category) 删除
+                                    button.btn.btn-primary(ng-click="edit(category)") 编辑
+                                    button.btn.btn-danger(ng-click="delete(category)") 删除
+        .col-md-4
+            .panel.panel-default
+                .panel-heading.clearfix
+                    .pull-left 查看分类
+                .panel-body
+                    table.table.table-striped.table-bordered
+                        thead
+                            tr
+                                td 名称
+                        tbody
+                            tr
+                                td {{selectedCategory.name}}
         #addDialog.modal.fade
             .modal-dialog
                 .modal-content
@@ -42,26 +60,4 @@ div.container
                                     input#name.form-control(type='text', ng-model='category.name', placeholder='名称')
                     .modal-footer
                         button.btn.btn-success(ng-click='save()', data-dismiss='modal') 确定
-                        button.btn.btn-default(data-dismiss='modal') 取消
-        #viewDialog.modal.fade
-            .modal-dialog
-                .modal-content
-                    .modal-header
-                        button.close(data-dismiss='modal') ×
-                        h4(modal-title) 查看分类
-                    .modal-body
-                        .thubmnail
-                            |{{ware.name}}
-                    .modal-footer
-                        button.btn.btn-default(data-dismiss='modal') 取消
-        #deleteDialog.modal.fade
-            .modal-dialog
-                .modal-content
-                    .modal-header
-                        button.close(data-dismiss='modal') ×
-                        h4(modal-title='') 确认删除
-                    .modal-body
-                        | 请问你是否确认要删除{{category.name}}?
-                    .modal-footer
-                        button.btn.btn-danger(ng-click='delete()', data-dismiss='modal') 确定
                         button.btn.btn-default(data-dismiss='modal') 取消

@@ -8,7 +8,7 @@ function routes($stateProvider) {
             url: '/category',
             template: template,
             controller: controller,
-            controllerAs: 'category',
+            controllerAs: 'categoryCtrl',
             bindToController: true
         });
 }

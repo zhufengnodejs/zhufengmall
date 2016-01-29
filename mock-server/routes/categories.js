@@ -12,7 +12,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  console.log(req.body);
   Category.findOne({name:req.body.name},function(err,category){
     if(err){
       res.status(500).json({msg:err});
@@ -28,6 +27,26 @@ router.post('/', function(req, res, next) {
           }
         });
       }
+    }
+  });s
+});
+
+router.delete('/:_id',function(req, res, next){
+  Category.remove({_id:req.params._id},function(err,category){
+    if(err){
+      res.status(500).json({msg:err});
+    }else{
+      res.json(category);
+    }
+  });
+});
+
+router.put('/:_id',function(req, res, next){
+  Category.update({_id:req.params._id},{$set:{name:req.body.name}},function(err,category){
+    if(err){
+      res.status(500).json({msg:err});
+    }else{
+      res.json(category);
     }
   });
 });
