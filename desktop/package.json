@@ -20,7 +20,7 @@
   "scripts": {
     "build": "DEV=false webpack",
     "test": "mocha src/**/*.spec.js",
-    "dev": "webpack-dev-server --devtool eval --config webpack.config.js --progress --colors --port 8080"
+    "dev": "webpack-dev-server --devtool eval --config webpack.config.js --progress --colors --port 9090"
   },
   "dependencies": {
     "angular": "^1.4.8",
