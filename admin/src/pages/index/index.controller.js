@@ -1,18 +1,12 @@
-export default class IndexController {
-    constructor($scope,$http) {
-        this.$scope = $scope;
-        this.$http = $http;
-        this._init();
-    }
-
-    _init() {
-       this.login = () => {
-           this.$http.post('http://localhost:3000/users/login',{username:this.$scope.username}).then((result)=>{
-               console.log(result.data);
-           });
-       }
-
+var IndexController = ($rootScope,$scope,$http,$state) => {
+    $scope.login = () => {
+        $http.post('http://localhost:3000/users/login',{username:$scope.username}).then((result)=>{
+            console.log(result.data);
+            $rootScope.user = result.data;
+            $state.go('ware');
+        });
     }
 }
 
-IndexController.$inject = ['$scope','$http'];
+IndexController.$inject = ['$rootScope','$scope','$http','$state'];
+export  default IndexController;

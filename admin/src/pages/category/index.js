@@ -1,6 +1,3 @@
-import angular from 'angular'
-import jQuery from 'jquery';
-import bootstrap from 'bootstrap';
 import routes from './category.routes'
 import navigation from 'components/navigation/'
 import categoryService from './category.service'
